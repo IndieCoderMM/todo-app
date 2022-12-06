@@ -1,7 +1,7 @@
 {
-  "name": "webpack-template",
+  "name": "todo-app",
   "version": "1.0.0",
-  "description": "<a name=\"readme-top\"></a>",
+  "description": "Simple todo list app",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IndieCoderMM/webpack-template.git"
+    "url": "git+https://github.com/IndieCoderMM/todo-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/IndieCoderMM/webpack-template/issues"
+    "url": "https://github.com/IndieCoderMM/todo-app/issues"
   },
-  "homepage": "https://github.com/IndieCoderMM/webpack-template#readme",
+  "homepage": "https://github.com/IndieCoderMM/todo-app#readme",
   "devDependencies": {
     "css-loader": "^6.7.2",
     "html-webpack-plugin": "^5.5.0",
@@ -35,5 +35,6 @@
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0"
-  }
+  },
+  "main": "webpack.config.js"
 }
