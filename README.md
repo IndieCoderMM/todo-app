@@ -31,7 +31,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# ✅ Microtasks <a name="about-project"></a>
+# 📅 Microtasks <a name="about-project"></a>
 
 **Microtasks** is a to-do list app for managing and organizing daily tasks.
 
@@ -56,7 +56,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-You can visit the live version on [Microtasks Todo App](https://github.io/IndieCoderMM/todo-app/index.html).
+You can visit the live version on [www.microtasks.com](https://github.io/IndieCoderMM/todo-app/index.html).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
