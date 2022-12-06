@@ -29,11 +29,24 @@ const getListItem = (todo) => {
   const li = document.createElement('li');
   const checkBox = document.createElement('input');
   const input = document.createElement('input');
+  const removeBtn = document.createElement('button');
+  const dragBtn = document.createElement('button');
   checkBox.setAttribute('type', 'checkbox');
   checkBox.checked = todo.completed;
   input.value = todo.description;
+  if (todo.completed) input.style.textDecoration = 'line-through';
+  removeBtn.id = `remove-${todo.index}`;
+  dragBtn.id = `drag-${todo.index}`;
+  removeBtn.classList.add('remove-btn');
+  dragBtn.classList.add('drag-btn');
+  // Button icons
+  removeBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+  dragBtn.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+
   li.appendChild(checkBox);
   li.appendChild(input);
+  li.appendChild(removeBtn);
+  li.appendChild(dragBtn);
   return li;
 };
 
