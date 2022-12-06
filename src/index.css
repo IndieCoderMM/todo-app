@@ -58,6 +58,7 @@ footer {
 
 #new-task-input {
   padding: 0.5rem 0.75rem;
+  width: 100%;
 }
 
 #todo-section {
@@ -96,12 +97,13 @@ footer {
   gap: 1rem;
   padding: 0.5rem 1rem;
   border-top: solid 1px #333;
-  position: relative;
+}
+
+.task {
+  flex: 1;
 }
 
 #todo-container button {
-  position: absolute;
-  right: 0.5rem;
   font-size: 1.3rem;
 }
 
