@@ -1,12 +1,12 @@
 import './index.css';
-import { addNewTask, deleteTask, editTask } from './task_manager.js';
+import { addNewTask, deleteTask, updateTask } from './task_manager.js';
 
 const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
 
 const LOCAL_KEY = 'microtasks-data';
-const TRASH_ICON = `<i class="fa-solid fa-trash"></i>`;
-const DRAG_ICON = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
+const TRASH_ICON = '<i class="fa-solid fa-trash"></i>';
+const DRAG_ICON = '<i class="fa-solid fa-ellipsis-vertical"></i>';
 
 const getLocalData = () => {
   let todoList = [];
@@ -65,7 +65,7 @@ const updateTodoList = (todoList) => {
 
 /* -------Main Program-----------*/
 
-let todoList = getLocalData();
+const todoList = getLocalData();
 updateTodoList(todoList);
 
 document.addEventListener('click', (e) => {
@@ -73,7 +73,7 @@ document.addEventListener('click', (e) => {
   const removeBtn = e.target.closest('.remove-btn');
   if (removeBtn === null) return;
   const idToRemove = removeBtn.id.split('-')[1];
-  deleteTask({ index: parseInt(idToRemove), list: todoList });
+  deleteTask({ index: parseInt(idToRemove, 10), list: todoList });
   updateTodoList(todoList);
 });
 
@@ -98,8 +98,8 @@ document.addEventListener('change', (e) => {
     return;
   }
   const completed = item.querySelector('.todo-check').checked;
-  editTask({
-    todo: { task: task, index: item.id, completed: completed },
+  updateTask({
+    todo: { task, index: item.id, completed },
     list: todoList,
   });
   updateTodoList(todoList);
