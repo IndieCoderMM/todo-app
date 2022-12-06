@@ -22,6 +22,7 @@ const updateLocalData = (todoList) => {
 };
 
 const makeButton = (id, className, icon) => {
+  // Button for todo item
   const btn = document.createElement('button');
   btn.id = id;
   btn.classList.add(className);
@@ -29,41 +30,46 @@ const makeButton = (id, className, icon) => {
   return btn;
 };
 
-const getListItem = (todo) => {
+const makeTodoItem = (todo) => {
+  // Creating li for each todo object
   const li = document.createElement('li');
   const checkBox = document.createElement('input');
-  const input = document.createElement('input');
+  const taskInput = document.createElement('input');
   const removeBtn = makeButton(`rm-${todo.index}`, 'remove-btn', TRASH_ICON);
   const dragBtn = makeButton(`dg-${todo.index}`, 'drag-btn', DRAG_ICON);
   checkBox.setAttribute('type', 'checkbox');
   checkBox.classList.add('todo-check');
   checkBox.checked = todo.completed;
-  input.classList.add('task');
-  input.value = todo.task;
-  if (todo.completed) input.style.textDecoration = 'line-through';
+  taskInput.classList.add('task');
+  taskInput.value = todo.task;
+  if (todo.completed) taskInput.style.textDecoration = 'line-through';
   li.id = todo.index;
   li.classList.add('todo-item');
   li.appendChild(checkBox);
-  li.appendChild(input);
+  li.appendChild(taskInput);
   li.appendChild(removeBtn);
   li.appendChild(dragBtn);
   return li;
 };
 
 const updateTodoList = (todoList) => {
+  // update display and storage
   todoContainer.textContent = '';
   todoList.sort((a, b) => a.index - b.index);
   todoList.forEach((todo) => {
-    const item = getListItem(todo);
+    const item = makeTodoItem(todo);
     todoContainer.appendChild(item);
   });
   updateLocalData(todoList);
 };
 
+/* -------Main Program-----------*/
+
 let todoList = getLocalData();
 updateTodoList(todoList);
 
 document.addEventListener('click', (e) => {
+  // handling remove buttons
   const removeBtn = e.target.closest('.remove-btn');
   if (removeBtn === null) return;
   const idToRemove = removeBtn.id.split('-')[1];
@@ -72,21 +78,26 @@ document.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keyup', (e) => {
+  // adding new task on Enter
   if (e.key === 'Enter') {
     const newTask = newTaskInput.value.trim();
     newTaskInput.value = '';
-    if (newTask.length > 0) {
-      addNewTask({ task: newTask, list: todoList });
-      updateTodoList(todoList);
-    }
+    if (newTask.length === 0) return;
+    addNewTask({ task: newTask, list: todoList });
+    updateTodoList(todoList);
   }
 });
 
 document.addEventListener('change', (e) => {
+  // handling task updates
   const item = e.target.closest('.todo-item');
   if (item === null) return;
+  const task = item.querySelector('.task').value.trim();
+  if (task.length === 0) {
+    updateTodoList(todoList);
+    return;
+  }
   const completed = item.querySelector('.todo-check').checked;
-  const task = item.querySelector('.task').value;
   editTask({
     todo: { task: task, index: item.id, completed: completed },
     list: todoList,

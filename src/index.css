@@ -101,6 +101,7 @@ footer {
 
 .task {
   flex: 1;
+  text-transform: capitalize;
 }
 
 #todo-container button {
