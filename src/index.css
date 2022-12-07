@@ -99,7 +99,7 @@ footer {
   border-top: solid 1px #333;
 }
 
-.task {
+.task-input {
   flex: 1;
   text-transform: capitalize;
 }
@@ -140,6 +140,7 @@ footer {
   text-align: center;
   font-size: 1.3rem;
   transition: all 0.1s;
+  border-top: solid 1px #747474;
 }
 
 #clear-btn:hover {
