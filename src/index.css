@@ -56,11 +56,6 @@ footer {
   text-transform: uppercase;
 }
 
-#new-task-input {
-  padding: 0.5rem 0.75rem;
-  width: 100%;
-}
-
 #todo-section {
   background-color: #fff;
   color: blueviolet;
@@ -85,6 +80,37 @@ footer {
 #refresh-btn:hover {
   color: royalblue;
   transform: scale(1.4) rotateZ(90deg);
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#new-task-input {
+  padding: 0.5rem 0.75rem;
+  width: 80%;
+}
+
+.msg-box {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #999;
+  padding: 0.5rem;
+  display: none;
+}
+
+.key-tag {
+  border: solid 1px #747474;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.input-container:focus-within .msg-box {
+  display: block;
 }
 
 #todo-container {
@@ -123,7 +149,7 @@ footer {
 }
 
 #todo-container li:focus-within {
-  background-color: beige;
+  background-color: aliceblue;
 }
 
 #todo-container li:focus-within .remove-btn {
@@ -144,6 +170,6 @@ footer {
 }
 
 #clear-btn:hover {
-  background-color: goldenrod;
+  background-color: darkmagenta;
   color: #fff;
 }
