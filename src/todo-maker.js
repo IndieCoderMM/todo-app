@@ -33,7 +33,6 @@ export const makeTodoItem = (todo, todoList) => {
   taskInput.addEventListener('change', (e) => {
     const task = e.target.value.trim();
     if (task.length === 0) return;
-
     updateTask({
       task: e.target.value,
       index: e.target.dataset.index,

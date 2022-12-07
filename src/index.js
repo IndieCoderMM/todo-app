@@ -54,6 +54,9 @@ document.addEventListener('keyup', (e) => {
 
 document.addEventListener('change', () => updateTodoList(todoList));
 
-// clearBtn.addEventListener("click", ()=> {
-//   clearCompletedTodo(todoList);
-// })
+clearBtn.addEventListener('click', () => {
+  todoList.forEach((todo) => {
+    if (todo.completed) deleteTask({ index: todo.index, list: todoList });
+  });
+  updateTodoList(todoList);
+});
