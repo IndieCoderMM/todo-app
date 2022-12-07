@@ -5,6 +5,8 @@ import { makeTodoItem } from './todo-maker.js';
 const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
 const clearBtn = document.querySelector('#clear-btn');
+const clock = document.querySelector('#clock');
+const time = document.querySelector('#date');
 
 const LOCAL_KEY = 'microtasks-data';
 
@@ -60,3 +62,8 @@ clearBtn.addEventListener('click', () => {
   });
   updateTodoList(todoList);
 });
+
+date.textContent = new Date().toLocaleDateString('en-US');
+setInterval(() => {
+  clock.textContent = new Date().toLocaleTimeString('en-US');
+}, 1000);
