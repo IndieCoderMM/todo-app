@@ -14,7 +14,7 @@ export const deleteTask = ({ index, list }) => {
   list.splice(index, 1);
 };
 
-export const updateTask = ({ todo: { task, index, completed }, list }) => {
+export const updateTask = ({ task, index, list }) => {
   if (index >= list.length) return;
-  list[index] = new Todo({ task, index, completed });
+  list[index].task = task;
 };
