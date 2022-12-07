@@ -1,5 +1,5 @@
 import './index.css';
-import { addNewTask, deleteTask, updateTask } from './task_manager.js';
+import { addNewTask, deleteTask, updateTask } from './task-manager.js';
 
 const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
