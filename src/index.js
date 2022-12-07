@@ -1,5 +1,6 @@
 import './index.css';
 import { addNewTask, deleteTask, updateTask } from './task-manager.js';
+import { updateTodoStatus } from './update-status.js';
 
 const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
@@ -17,34 +18,50 @@ const getLocalData = () => {
   return todoList;
 };
 
+let todoList = getLocalData();
+
 const updateLocalData = (todoList) => {
   localStorage.setItem(LOCAL_KEY, JSON.stringify(todoList));
 };
 
-const makeButton = (id, className, icon) => {
-  // Button for todo item
-  const btn = document.createElement('button');
-  btn.id = id;
-  btn.classList.add(className);
-  btn.innerHTML = icon;
-  return btn;
+const makeElement = (tag, className, todoIndex) => {
+  const elem = document.createElement(tag);
+  elem.classList.add(className);
+  elem.dataset.index = todoIndex;
+  return elem;
 };
 
 const makeTodoItem = (todo) => {
-  // Creating li for each todo object
-  const li = document.createElement('li');
-  const checkBox = document.createElement('input');
-  const taskInput = document.createElement('input');
-  const removeBtn = makeButton(`rm-${todo.index}`, 'remove-btn', TRASH_ICON);
-  const dragBtn = makeButton(`dg-${todo.index}`, 'drag-btn', DRAG_ICON);
-  checkBox.setAttribute('type', 'checkbox');
-  checkBox.classList.add('todo-check');
+  // Creating elements for each todo
+  const li = makeElement('li', 'todo-item', todo.index);
+  const checkBox = makeElement('input', 'todo-check', todo.index);
+  const taskInput = makeElement('input', 'task-input', todo.index);
+  const removeBtn = makeElement('button', 'remove-btn', todo.index);
+  const dragBtn = makeElement('button', 'drag-btn', todo.index);
+
+  checkBox.type = 'checkbox';
   checkBox.checked = todo.completed;
-  taskInput.classList.add('task');
+  checkBox.addEventListener('change', (e) => {
+    updateTodoStatus({
+      index: parseInt(e.target.dataset.index),
+      completed: e.target.checked,
+      list: todoList,
+    });
+    updateTodoList(todoList);
+  });
   taskInput.value = todo.task;
   if (todo.completed) taskInput.style.textDecoration = 'line-through';
-  li.id = todo.index;
-  li.classList.add('todo-item');
+  taskInput.addEventListener('change', (e) => {
+    updateTask({
+      task: e.target.value,
+      index: e.target.dataset.index,
+      list: todoList,
+    });
+    updateTodoList(todoList);
+  });
+  removeBtn.innerHTML = TRASH_ICON;
+  dragBtn.innerHTML = DRAG_ICON;
+
   li.appendChild(checkBox);
   li.appendChild(taskInput);
   li.appendChild(removeBtn);
@@ -65,7 +82,6 @@ const updateTodoList = (todoList) => {
 
 /* -------Main Program-----------*/
 
-const todoList = getLocalData();
 updateTodoList(todoList);
 
 document.addEventListener('click', (e) => {
@@ -88,19 +104,16 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-document.addEventListener('change', (e) => {
-  // handling task updates
-  const item = e.target.closest('.todo-item');
-  if (item === null) return;
-  const task = item.querySelector('.task').value.trim();
-  if (task.length === 0) {
-    updateTodoList(todoList);
-    return;
-  }
-  const completed = item.querySelector('.todo-check').checked;
-  updateTask({
-    todo: { task, index: item.id, completed },
-    list: todoList,
-  });
-  updateTodoList(todoList);
-});
+// document.addEventListener('change', (e) => {
+//   // handling task updates
+//   const item = e.target.closest('.todo-item');
+//   if (item === null) return;
+//   const task = item.querySelector('.task').value.trim();
+//   if (task.length === 0) {
+//     updateTodoList(todoList);
+//     return;
+//   }
+//   const completed = item.querySelector('.todo-check').checked;
+//   updateTask({ task, index: item.id, list: todoList });
+//   updateTodoList(todoList);
+// });
