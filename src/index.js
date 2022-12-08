@@ -6,7 +6,7 @@ const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
 const clearBtn = document.querySelector('#clear-btn');
 const clock = document.querySelector('#clock');
-const time = document.querySelector('#date');
+const date = document.querySelector('#date');
 
 const LOCAL_KEY = 'microtasks-data';
 
@@ -57,9 +57,10 @@ document.addEventListener('keyup', (e) => {
 document.addEventListener('change', () => updateTodoList(todoList));
 
 clearBtn.addEventListener('click', () => {
-  todoList.forEach((todo) => {
-    if (todo.completed) deleteTask({ index: todo.index, list: todoList });
-  });
+  const completedItems = todoList.filter((item) => item.completed);
+  completedItems.forEach((todo) =>
+    deleteTask({ index: todo.index, list: todoList })
+  );
   updateTodoList(todoList);
 });
 
