@@ -13,27 +13,31 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Install](#install)
-  - [Usage](#usage)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+- [📗 Table of Contents](#-table-of-contents)
+- [📅 Microtasks ](#-microtasks-)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [🚀 Live Demo ](#-live-demo-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+  - [👨‍🚀 IndieCoderMM ](#-indiecodermm-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
 
 # 📅 Microtasks <a name="about-project"></a>
 
 **Microtasks** is a to-do list app for managing and organizing daily tasks.
+
+![Screenshot](app_screenshot.png)
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -49,6 +53,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **Bundle using webpack**
+- **ES6 syntax**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -65,6 +70,10 @@ You can visit the live version on [www.microtasks.app.com](https://indiecodermm.
 ## 💻 Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
+
+### Prerequisites
+
+In order to run this project you need **npm**.
 
 ### Setup
 
