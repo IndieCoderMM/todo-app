@@ -1,4 +1,4 @@
-export const updateTodoStatus = ({ index, completed, list }) => {
+export default function updateTodoStatus({ index, completed, list }) {
   if (index >= list.length) return;
   list[index].completed = completed;
-};
+}

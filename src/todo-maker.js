@@ -1,4 +1,4 @@
-import { updateTodoStatus } from './update-status.js';
+import updateTodoStatus from './update-status.js';
 import { updateTask } from './task-manager.js';
 
 const TRASH_ICON = '<i class="fa-solid fa-trash"></i>';
@@ -11,7 +11,7 @@ const makeElement = (tag, className, todoIndex) => {
   return elem;
 };
 
-export const makeTodoItem = (todo, todoList) => {
+export default function makeTodoItem(todo, todoList) {
   // Creating elements for each todo
   const li = makeElement('li', 'todo-item', todo.index);
   const checkBox = makeElement('input', 'todo-check', todo.index);
@@ -23,7 +23,7 @@ export const makeTodoItem = (todo, todoList) => {
   checkBox.checked = todo.completed;
   checkBox.addEventListener('change', (e) => {
     updateTodoStatus({
-      index: parseInt(e.target.dataset.index),
+      index: parseInt(e.target.dataset.index, 10),
       completed: e.target.checked,
       list: todoList,
     });
@@ -47,4 +47,4 @@ export const makeTodoItem = (todo, todoList) => {
   li.appendChild(removeBtn);
   li.appendChild(dragBtn);
   return li;
-};
+}

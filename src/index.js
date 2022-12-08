@@ -1,6 +1,6 @@
 import './index.css';
 import { addNewTask, deleteTask } from './task-manager.js';
-import { makeTodoItem } from './todo-maker.js';
+import makeTodoItem from './todo-maker.js';
 
 const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
@@ -31,7 +31,7 @@ const updateTodoList = (todoList) => {
 };
 
 /* -------Main Program-----------*/
-let todoList = getLocalData();
+const todoList = getLocalData();
 updateTodoList(todoList);
 
 document.addEventListener('click', (e) => {
@@ -58,9 +58,7 @@ document.addEventListener('change', () => updateTodoList(todoList));
 
 clearBtn.addEventListener('click', () => {
   const completedItems = todoList.filter((item) => item.completed);
-  completedItems.forEach((todo) =>
-    deleteTask({ index: todo.index, list: todoList })
-  );
+  completedItems.forEach((todo) => deleteTask({ index: todo.index, list: todoList }));
   updateTodoList(todoList);
 });
 
