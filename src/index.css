@@ -129,7 +129,7 @@ footer {
 
 #new-task-input {
   padding: 0.5rem 0.75rem;
-  width: 80%;
+  flex: 1;
 }
 
 .msg-box {
@@ -180,6 +180,7 @@ footer {
 
 .drag-btn {
   cursor: grab;
+  color: #ccc;
 }
 
 .remove-btn:hover {
@@ -214,4 +215,24 @@ footer {
 #clear-btn:hover {
   box-shadow: inset 0 -5em 0 0 #4a1e9e;
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: #fff;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  #todo-section {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  footer {
+    color: #4a1e9e;
+  }
 }

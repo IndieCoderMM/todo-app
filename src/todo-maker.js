@@ -2,7 +2,7 @@ import updateTodoStatus from './update-status.js';
 import { updateTask } from './task-manager.js';
 
 const TRASH_ICON = '<i class="fa-solid fa-trash"></i>';
-const DRAG_ICON = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+const DRAG_ICON = '<i class="fa-solid fa-grip-vertical"></i>';
 
 const makeElement = (tag, className, todoIndex) => {
   const elem = document.createElement(tag);
@@ -28,7 +28,7 @@ const makeTodoItem = (todo, todoList) => {
       list: todoList,
     });
   });
-  taskInput.value = todo.task + todo.index;
+  taskInput.value = todo.task;
   if (todo.completed) taskInput.style.textDecoration = 'line-through';
   taskInput.addEventListener('change', (e) => {
     const task = e.target.value.trim();
