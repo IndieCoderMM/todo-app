@@ -11,7 +11,7 @@ const makeElement = (tag, className, todoIndex) => {
   return elem;
 };
 
-export default function makeTodoItem(todo, todoList) {
+const makeTodoItem = (todo, todoList) => {
   // Creating elements for each todo
   const li = makeElement('li', 'todo-item', todo.index);
   const checkBox = makeElement('input', 'todo-check', todo.index);
@@ -28,7 +28,7 @@ export default function makeTodoItem(todo, todoList) {
       list: todoList,
     });
   });
-  taskInput.value = todo.task;
+  taskInput.value = todo.task + todo.index;
   if (todo.completed) taskInput.style.textDecoration = 'line-through';
   taskInput.addEventListener('change', (e) => {
     const task = e.target.value.trim();
@@ -41,10 +41,12 @@ export default function makeTodoItem(todo, todoList) {
   });
   removeBtn.innerHTML = TRASH_ICON;
   dragBtn.innerHTML = DRAG_ICON;
-
+  dragBtn.addEventListener('mousedown', () => (li.draggable = true));
   li.appendChild(checkBox);
   li.appendChild(taskInput);
   li.appendChild(removeBtn);
   li.appendChild(dragBtn);
   return li;
-}
+};
+
+export default makeTodoItem;
