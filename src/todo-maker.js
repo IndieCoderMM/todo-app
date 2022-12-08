@@ -41,7 +41,9 @@ const makeTodoItem = (todo, todoList) => {
   });
   removeBtn.innerHTML = TRASH_ICON;
   dragBtn.innerHTML = DRAG_ICON;
-  dragBtn.addEventListener('mousedown', () => (li.draggable = true));
+  dragBtn.addEventListener('mousedown', () => {
+    li.draggable = true;
+  });
   li.appendChild(checkBox);
   li.appendChild(taskInput);
   li.appendChild(removeBtn);

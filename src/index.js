@@ -59,9 +59,7 @@ document.addEventListener('change', () => updateTodoList(todoList));
 
 clearBtn.addEventListener('click', () => {
   const completedItems = todoList.filter((item) => item.completed);
-  completedItems.forEach((todo) =>
-    deleteTask({ index: todo.index, list: todoList })
-  );
+  completedItems.forEach((todo) => deleteTask({ index: todo.index, list: todoList }));
   updateTodoList(todoList);
 });
 
@@ -95,7 +93,7 @@ document.addEventListener('drop', (e) => {
   reorderTodoList(
     todoList,
     parseInt(dragItem.dataset.index, 10),
-    parseInt(dropOn.dataset.index, 10)
+    parseInt(dropOn.dataset.index, 10),
   );
   updateTodoList(todoList);
 });
