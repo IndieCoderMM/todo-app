@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microtasks | To-do App</title>
+    <script
+      src="https://kit.fontawesome.com/9d6e6aaa13.js"
+      crossorigin="anonymous"
+    ></script>
+  <script defer src="main.js"></script></head>
+  <body>
+    <header class="navbar">
+      <h1>
+        <a href="#" class="brand"
+          ><i class="fa-regular fa-calendar-check"></i>Microtasks</a
+        >
+      </h1>
+      <div class="time-block">
+        <p id="date"></p>
+        <p id="clock"></p>
+      </div>
+    </header>
+    <main>
+      <section id="todo-section">
+        <header class="section-header">
+          <h2 class="title">Today's Tasks</h2>
+
+          <button id="refresh-btn">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </button>
+        </header>
+        <div class="input-container">
+          <input type="text" id="new-task-input" placeholder="Add new task" />
+          <p class="msg-box">press <span class="key-tag">Enter</span></p>
+        </div>
+        <ul id="todo-container">
+          <!-- This section will load dynamically -->
+        </ul>
+        <button id="clear-btn" type="button">Clear all completed</button>
+      </section>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2022 microtasks.app.com</p>
+    </footer>
+  </body>
+</html>
