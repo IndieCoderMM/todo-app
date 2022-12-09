@@ -2,7 +2,7 @@ import updateTodoStatus from './update-status.js';
 import { updateTask } from './task-manager.js';
 
 const TRASH_ICON = '<i class="fa-solid fa-trash"></i>';
-const DRAG_ICON = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+const DRAG_ICON = '<i class="fa-solid fa-grip-vertical"></i>';
 
 const makeElement = (tag, className, todoIndex) => {
   const elem = document.createElement(tag);
@@ -11,7 +11,7 @@ const makeElement = (tag, className, todoIndex) => {
   return elem;
 };
 
-export default function makeTodoItem(todo, todoList) {
+const makeTodoItem = (todo, todoList) => {
   // Creating elements for each todo
   const li = makeElement('li', 'todo-item', todo.index);
   const checkBox = makeElement('input', 'todo-check', todo.index);
@@ -41,10 +41,14 @@ export default function makeTodoItem(todo, todoList) {
   });
   removeBtn.innerHTML = TRASH_ICON;
   dragBtn.innerHTML = DRAG_ICON;
-
+  dragBtn.addEventListener('mousedown', () => {
+    li.draggable = true;
+  });
   li.appendChild(checkBox);
   li.appendChild(taskInput);
   li.appendChild(removeBtn);
   li.appendChild(dragBtn);
   return li;
-}
+};
+
+export default makeTodoItem;

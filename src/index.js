@@ -1,6 +1,7 @@
 import './index.css';
 import { addNewTask, deleteTask } from './task-manager.js';
 import makeTodoItem from './todo-maker.js';
+import reorderTodoList from './reorder-list.js';
 
 const todoContainer = document.querySelector('#todo-container');
 const newTaskInput = document.querySelector('#new-task-input');
@@ -66,3 +67,33 @@ date.textContent = new Date().toLocaleDateString('en-US');
 setInterval(() => {
   clock.textContent = new Date().toLocaleTimeString('en-US');
 }, 1000);
+
+// * Drag and Drop Feature
+let dragItem;
+let dropOn;
+
+document.addEventListener('dragstart', (e) => {
+  dragItem = e.target.closest('.todo-item');
+});
+
+todoContainer.addEventListener('dragover', (e) => e.preventDefault());
+
+document.addEventListener('dragenter', (e) => {
+  dropOn = e.target.closest('.todo-item');
+});
+
+document.addEventListener('dragend', () => {
+  if (dragItem === null) return;
+  dragItem.draggable = false;
+});
+
+document.addEventListener('drop', (e) => {
+  e.preventDefault();
+  if (dragItem === null || dropOn === null) return;
+  reorderTodoList(
+    todoList,
+    parseInt(dragItem.dataset.index, 10),
+    parseInt(dropOn.dataset.index, 10),
+  );
+  updateTodoList(todoList);
+});
