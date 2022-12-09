@@ -61,7 +61,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-You can visit the live version on [www.microtasks.app.com](https://indiecodermm.github.io/todo-app/dist/index.html).
+You can visit the live version on [www.microtasks.app.com](https://indiecodermm.github.io/todo-app).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
