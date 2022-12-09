@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/IndieCoderMM/todo-app/issues"
   },
-  "homepage": "https://github.com/IndieCoderMM/todo-app#readme",
+  "homepage": "https://github.com/IndieCoderMM/todo-app",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.2",
