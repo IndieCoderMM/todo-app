@@ -117,7 +117,10 @@ To run the project in local server, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add/Remove tasks**
+- [x] **Drag & drop feature**
+- [ ] **Adding tags for to-do**
+- [ ] **Due-date feature"**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
