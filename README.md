@@ -119,7 +119,7 @@ To run the project in local server, execute the following command:
 
 - [x] **Drag & drop feature**
 - [ ] **Adding tags for to-do**
-- [ ] **Due-date feature"**
+- [ ] **Inbox section and due-date feature**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
