@@ -40,13 +40,28 @@ describe('delete 1 item', () => {
   test('1 list item should be deleted', () => {
     //Arrange
     const index = 0;
-    const list = [{index:0}];
+    const list = [{ index: 0 }];
 
     //Act
-    deleteTask({index, list});
-    const length = list.length; 
+    deleteTask({ index, list });
+    const length = list.length;
 
     //Assert
     expect(length).toBe(0);
-  })
-})
+  });
+  test('one list item should be removed from the document', () => {
+    // Arrange
+    document.body.innerHTML = "<ul id='container'><li>Task 1</li></ul>";
+    const container = document.querySelector('#container');
+    const index = 0;
+    const list = [{ index: 0 }];
+
+    // Act
+    deleteTask({ index, list });
+    updateTodoList(list, container);
+    const items = document.querySelectorAll('li');
+
+    // Assert
+    expect(items).toHaveLength(0);
+  });
+});
