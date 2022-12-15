@@ -1,0 +1,36 @@
+/**
+ * @jest-environment jsdom
+ */
+
+import { addNewTask, deleteTask } from './src/task-manager.js';
+import { updateTodoList } from './src/update-list.js';
+
+describe('Adding New Item', () => {
+  test('list should contain 1 item after adding', () => {
+    // Arrange
+    const task = 'New task';
+    const list = [];
+
+    // Act
+    addNewTask({ task, list });
+    const length = list.length;
+
+    // Assert
+    expect(length).toBe(1);
+  });
+  test('one list item should be added to the document', () => {
+    // Arrange
+    document.body.innerHTML = "<ul id='container'></ul>";
+    const container = document.querySelector('#container');
+    const task = 'New task';
+    const list = [];
+
+    // Act
+    addNewTask({ task, list });
+    updateTodoList(list, container);
+    const items = document.querySelectorAll('li');
+
+    // Assert
+    expect(items).toHaveLength(1);
+  });
+});

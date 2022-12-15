@@ -1,6 +1,6 @@
 import './index.css';
 import { addNewTask, deleteTask } from './task-manager.js';
-import makeTodoItem from './todo-maker.js';
+
 import reorderTodoList from './reorder-list.js';
 
 const todoContainer = document.querySelector('#todo-container');
@@ -18,17 +18,6 @@ const getLocalData = () => {
     todoList = JSON.parse(localData);
   }
   return todoList;
-};
-
-const updateTodoList = (todoList) => {
-  // update display and storage
-  todoContainer.textContent = '';
-  todoList.sort((a, b) => a.index - b.index);
-  todoList.forEach((todo) => {
-    const item = makeTodoItem(todo, todoList);
-    todoContainer.appendChild(item);
-  });
-  localStorage.setItem(LOCAL_KEY, JSON.stringify(todoList));
 };
 
 /* -------Main Program-----------*/
@@ -59,7 +48,9 @@ document.addEventListener('change', () => updateTodoList(todoList));
 
 clearBtn.addEventListener('click', () => {
   const completedItems = todoList.filter((item) => item.completed);
-  completedItems.forEach((todo) => deleteTask({ index: todo.index, list: todoList }));
+  completedItems.forEach((todo) =>
+    deleteTask({ index: todo.index, list: todoList })
+  );
   updateTodoList(todoList);
 });
 
@@ -93,7 +84,7 @@ document.addEventListener('drop', (e) => {
   reorderTodoList(
     todoList,
     parseInt(dragItem.dataset.index, 10),
-    parseInt(dropOn.dataset.index, 10),
+    parseInt(dropOn.dataset.index, 10)
   );
   updateTodoList(todoList);
 });
