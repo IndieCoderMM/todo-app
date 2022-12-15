@@ -6,7 +6,7 @@ import { addNewTask, deleteTask } from './src/task-manager.js';
 import updateTodoList from './src/update-list.js';
 
 describe('Adding New Item', () => {
-  test('list should contain 1 item after adding', () => {
+  test('list should contain one item after adding', () => {
     // Arrange
     const task = 'New task';
     const list = [];
@@ -18,7 +18,7 @@ describe('Adding New Item', () => {
     // Assert
     expect(length).toBe(1);
   });
-  test('one list item should be added to the document', () => {
+  test('One list item should be added to the document', () => {
     // Arrange
     document.body.innerHTML = "<ul id='container'></ul>";
     const container = document.querySelector('#container');
@@ -37,7 +37,7 @@ describe('Adding New Item', () => {
 
 // delete test
 describe('delete 1 item', () => {
-  test('1 list item should be deleted', () => {
+  test('One list item should be deleted', () => {
     // Arrange
     const index = 0;
     const list = [{ index: 0 }];
