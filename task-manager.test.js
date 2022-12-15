@@ -34,3 +34,19 @@ describe('Adding New Item', () => {
     expect(items).toHaveLength(1);
   });
 });
+
+//delete test
+describe('delete 1 item', () => {
+  test('1 list item should be deleted', () => {
+    //Arrange
+    const index = 0;
+    const list = [{index:0}];
+
+    //Act
+    deleteTask({index, list});
+    const length = list.length; 
+
+    //Assert
+    expect(length).toBe(0);
+  })
+})
