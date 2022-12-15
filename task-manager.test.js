@@ -4,6 +4,7 @@
 
 import { addNewTask, deleteTask, updateTask } from './src/task-manager.js';
 import updateTodoList from './src/update-list.js';
+import updateTodoStatus from './src/update-status';
 
 describe('Adding New Item', () => {
   test('list should contain one item after adding', () => {
@@ -109,3 +110,37 @@ describe('Editing Todo Items', () => {
     expect(input.value).toBe('New Task');
   });
 });
+
+//update function
+describe('Update check box', () => {
+  test('check box should be updated', () => {
+ // Arrange
+    const index = 0;
+ const completed = true;
+ const list = [{completed: false}];
+
+// Act
+updateTodoStatus({index,completed,list});
+const updateCeckBox = list[0].completed;
+
+// Assert
+expect(updateCeckBox).toBe(true);
+})
+
+test('Check box should be checked in document', () => {
+   // Arrange
+  document.body.innerHTML = "<ul id='container'></ul>";
+  const container = document.querySelector('#container');
+  const index = 0;
+  const completed = true;
+  const list = [{completed: false}];
+  
+// Act
+  updateTodoStatus({index,completed,list});
+  updateTodoList(list, container);
+  const input = document.querySelector('.todo-check');
+
+// Assert
+  expect(input.checked).toBe(true);
+})
+})
