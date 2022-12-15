@@ -4,7 +4,9 @@
 
 import { addNewTask, deleteTask, updateTask } from './src/task-manager.js';
 import updateTodoList from './src/update-list.js';
-import updateTodoStatus from './src/update-status';
+import updateTodoStatus from './src/update-status.js';
+import clearAllCompleted from './src/clear-all.js';
+
 
 describe('Adding New Item', () => {
   test('list should contain one item after adding', () => {
@@ -139,8 +141,37 @@ test('Check box should be checked in document', () => {
   updateTodoStatus({index,completed,list});
   updateTodoList(list, container);
   const input = document.querySelector('.todo-check');
-
+  
 // Assert
   expect(input.checked).toBe(true);
 })
+})
+
+//Clear-all Function
+describe('clear all completed item', () => {
+  test('completed item should be deleted', () => {
+    //Arrange
+    const list = [{index:0, completed:true}];
+
+    //Act
+    clearAllCompleted(list);
+
+    //Assert
+    expect(list.length).toBe(0);
+
+  })
+  test('completed item should be deleted from document', () => {
+    //Arrange
+    document.body.innerHTML = "<ul id='container'></ul>";
+    const container = document.querySelector('#container');
+    const list = [{index:0, completed:true}, {index:1, completed:false}];
+
+    //Act
+    clearAllCompleted(list);
+    updateTodoList(list, container);
+    const items = document.querySelectorAll('li');
+
+    //Assert
+    expect(items.length).toBe(1);
+  })
 })
