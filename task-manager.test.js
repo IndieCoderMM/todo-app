@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { addNewTask, deleteTask } from './src/task-manager.js';
+import { addNewTask, deleteTask, updateTask } from './src/task-manager.js';
 import updateTodoList from './src/update-list.js';
 
 describe('Adding New Item', () => {
@@ -63,5 +63,49 @@ describe('delete 1 item', () => {
 
     // Assert
     expect(items).toHaveLength(0);
+  });
+});
+
+// Edit Function
+describe('Editing Todo Items', () => {
+  test('task description should be changed', () => {
+    // Arrange
+    const task = 'New Task';
+    const index = 0;
+    const list = [
+      {
+        index: 0,
+        task: 'Old task',
+      },
+    ];
+
+    // Act
+    updateTask({ task, index, list });
+    const updatedTask = list[0].task;
+
+    // Assert
+    expect(updatedTask).toBe('New Task');
+  });
+
+  test('task should be updated in document', () => {
+    // Arrange
+    document.body.innerHTML = "<ul id='container'></ul>";
+    const container = document.querySelector('#container');
+    const task = 'New Task';
+    const index = 0;
+    const list = [
+      {
+        index: 0,
+        task: 'Old task',
+      },
+    ];
+
+    // Act
+    updateTask({ task, index, list });
+    updateTodoList(list, container);
+    const input = document.querySelector('.task-input');
+
+    // Assert
+    expect(input.value).toBe('New Task');
   });
 });
