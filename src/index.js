@@ -45,9 +45,7 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-document.addEventListener('change', () =>
-  updateTodoList(todoList, todoContainer)
-);
+document.addEventListener('change', () => updateTodoList(todoList, todoContainer));
 
 clearBtn.addEventListener('click', () => {
   clearAllCompleted(todoList);
@@ -84,7 +82,7 @@ document.addEventListener('drop', (e) => {
   reorderTodoList(
     todoList,
     parseInt(dragItem.dataset.index, 10),
-    parseInt(dropOn.dataset.index, 10)
+    parseInt(dropOn.dataset.index, 10),
   );
   updateTodoList(todoList, todoContainer);
 });

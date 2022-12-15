@@ -7,7 +7,6 @@ import updateTodoList from './src/update-list.js';
 import updateTodoStatus from './src/update-status.js';
 import clearAllCompleted from './src/clear-all.js';
 
-
 describe('Adding New Item', () => {
   test('list should contain one item after adding', () => {
     // Arrange
@@ -113,65 +112,67 @@ describe('Editing Todo Items', () => {
   });
 });
 
-//update function
+// update function
 describe('Update check box', () => {
   test('check box should be updated', () => {
- // Arrange
+    // Arrange
     const index = 0;
- const completed = true;
- const list = [{completed: false}];
+    const completed = true;
+    const list = [{ completed: false }];
 
-// Act
-updateTodoStatus({index,completed,list});
-const updateCeckBox = list[0].completed;
+    // Act
+    updateTodoStatus({ index, completed, list });
+    const updateCeckBox = list[0].completed;
 
-// Assert
-expect(updateCeckBox).toBe(true);
-})
+    // Assert
+    expect(updateCeckBox).toBe(true);
+  });
 
-test('Check box should be checked in document', () => {
-   // Arrange
-  document.body.innerHTML = "<ul id='container'></ul>";
-  const container = document.querySelector('#container');
-  const index = 0;
-  const completed = true;
-  const list = [{completed: false}];
-  
-// Act
-  updateTodoStatus({index,completed,list});
-  updateTodoList(list, container);
-  const input = document.querySelector('.todo-check');
-  
-// Assert
-  expect(input.checked).toBe(true);
-})
-})
-
-//Clear-all Function
-describe('clear all completed item', () => {
-  test('completed item should be deleted', () => {
-    //Arrange
-    const list = [{index:0, completed:true}];
-
-    //Act
-    clearAllCompleted(list);
-
-    //Assert
-    expect(list.length).toBe(0);
-
-  })
-  test('completed item should be deleted from document', () => {
-    //Arrange
+  test('Check box should be checked in document', () => {
+    // Arrange
     document.body.innerHTML = "<ul id='container'></ul>";
     const container = document.querySelector('#container');
-    const list = [{index:0, completed:true}, {index:1, completed:false}];
+    const index = 0;
+    const completed = true;
+    const list = [{ completed: false }];
 
-    //Act
+    // Act
+    updateTodoStatus({ index, completed, list });
+    updateTodoList(list, container);
+    const input = document.querySelector('.todo-check');
+
+    // Assert
+    expect(input.checked).toBe(true);
+  });
+});
+
+// Clear-all Function
+describe('clear all completed item', () => {
+  test('completed item should be deleted', () => {
+    // Arrange
+    const list = [{ index: 0, completed: true }];
+
+    // Act
+    clearAllCompleted(list);
+
+    // Assert
+    expect(list.length).toBe(0);
+  });
+  test('completed item should be deleted from document', () => {
+    // Arrange
+    document.body.innerHTML = "<ul id='container'></ul>";
+    const container = document.querySelector('#container');
+    const list = [
+      { index: 0, completed: true },
+      { index: 1, completed: false },
+    ];
+
+    // Act
     clearAllCompleted(list);
     updateTodoList(list, container);
     const items = document.querySelectorAll('li');
 
-    //Assert
+    // Assert
     expect(items.length).toBe(1);
-  })
-})
+  });
+});
