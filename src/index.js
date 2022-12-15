@@ -1,5 +1,6 @@
 import './index.css';
 import { addNewTask, deleteTask } from './task-manager.js';
+import clearAllCompleted from './clear-all.js';
 import updateTodoList from './update-list.js';
 import reorderTodoList from './reorder-list.js';
 
@@ -47,8 +48,7 @@ document.addEventListener('keyup', (e) => {
 document.addEventListener('change', () => updateTodoList(todoList, todoContainer));
 
 clearBtn.addEventListener('click', () => {
-  const completedItems = todoList.filter((item) => item.completed);
-  completedItems.forEach((todo) => deleteTask({ index: todo.index, list: todoList }));
+  clearAllCompleted(todoList);
   updateTodoList(todoList, todoContainer);
 });
 
