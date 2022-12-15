@@ -1,6 +1,6 @@
 import './index.css';
 import { addNewTask, deleteTask } from './task-manager.js';
-
+import updateTodoList from './update-list.js';
 import reorderTodoList from './reorder-list.js';
 
 const todoContainer = document.querySelector('#todo-container');
@@ -22,7 +22,7 @@ const getLocalData = () => {
 
 /* -------Main Program-----------*/
 const todoList = getLocalData();
-updateTodoList(todoList);
+updateTodoList(todoList, todoContainer);
 
 document.addEventListener('click', (e) => {
   // handling remove buttons
@@ -30,7 +30,7 @@ document.addEventListener('click', (e) => {
   if (removeBtn === null) return;
   const idToRemove = removeBtn.dataset.index;
   deleteTask({ index: parseInt(idToRemove, 10), list: todoList });
-  updateTodoList(todoList);
+  updateTodoList(todoList, todoContainer);
 });
 
 document.addEventListener('keyup', (e) => {
@@ -40,18 +40,16 @@ document.addEventListener('keyup', (e) => {
     newTaskInput.value = '';
     if (newTask.length === 0) return;
     addNewTask({ task: newTask, list: todoList });
-    updateTodoList(todoList);
+    updateTodoList(todoList, todoContainer);
   }
 });
 
-document.addEventListener('change', () => updateTodoList(todoList));
+document.addEventListener('change', () => updateTodoList(todoList, todoContainer));
 
 clearBtn.addEventListener('click', () => {
   const completedItems = todoList.filter((item) => item.completed);
-  completedItems.forEach((todo) =>
-    deleteTask({ index: todo.index, list: todoList })
-  );
-  updateTodoList(todoList);
+  completedItems.forEach((todo) => deleteTask({ index: todo.index, list: todoList }));
+  updateTodoList(todoList, todoContainer);
 });
 
 date.textContent = new Date().toLocaleDateString('en-US');
@@ -84,7 +82,7 @@ document.addEventListener('drop', (e) => {
   reorderTodoList(
     todoList,
     parseInt(dragItem.dataset.index, 10),
-    parseInt(dropOn.dataset.index, 10)
+    parseInt(dropOn.dataset.index, 10),
   );
-  updateTodoList(todoList);
+  updateTodoList(todoList, todoContainer);
 });

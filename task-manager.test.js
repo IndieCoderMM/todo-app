@@ -3,7 +3,7 @@
  */
 
 import { addNewTask, deleteTask } from './src/task-manager.js';
-import { updateTodoList } from './src/update-list.js';
+import updateTodoList from './src/update-list.js';
 
 describe('Adding New Item', () => {
   test('list should contain 1 item after adding', () => {
@@ -13,7 +13,7 @@ describe('Adding New Item', () => {
 
     // Act
     addNewTask({ task, list });
-    const length = list.length;
+    const { length } = list;
 
     // Assert
     expect(length).toBe(1);
@@ -35,18 +35,18 @@ describe('Adding New Item', () => {
   });
 });
 
-//delete test
+// delete test
 describe('delete 1 item', () => {
   test('1 list item should be deleted', () => {
-    //Arrange
+    // Arrange
     const index = 0;
     const list = [{ index: 0 }];
 
-    //Act
+    // Act
     deleteTask({ index, list });
-    const length = list.length;
+    const { length } = list;
 
-    //Assert
+    // Assert
     expect(length).toBe(0);
   });
   test('one list item should be removed from the document', () => {
